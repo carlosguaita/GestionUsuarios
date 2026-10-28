@@ -1,60 +1,48 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class SistemaCLI {
 
 
-    Usuario[] usuarios = new Usuario[5];
+    List<Persona> personas = new ArrayList<>();
     Scanner sc;
-    int contU = 0;
+
 
 
     public SistemaCLI(){
         sc = new Scanner(System.in);
     }
 
-    public void crearUsuario(){
+    public void crearPersona(){
         System.out.println("Ingrese los datos del usuario:");
-        System.out.print("Username (no espacios en blanco): ");
-        String username = sc.next();
+        System.out.print("Nombre (no espacios en blanco): ");
+        String name = sc.next();
+        System.out.print("Id (no espacios en blanco): ");
+        String id = sc.next();
         System.out.print("Password: ");
         String password = sc.next();
-        System.out.print("Rol (1.Admin., 2.Normal): ");
-        int rol = sc.nextInt();
-        Usuario usuario = new Usuario(username,password,rol);
-        usuarios[contU] = usuario;
-        contU++;
-        System.out.println("Usuario creado");
+        Persona persona = new Persona(name,id,password);
+        personas.add(persona);
+        System.out.println("Persona creada");
     }
 
-    public void mostrarUsuarios(){
-        System.out.printf("#\t\tUsername\t\tRol\n");
-        for (int i = 0; i < contU; i++){
-            System.out.printf("%d\t\t%s\t\t%d\n",i,usuarios[i].getUsername(),usuarios[i].getRol());
+    public void mostrarPersonas(){
+        System.out.printf("Id\t\tNombre\n");
+        for (Persona persona : personas) {
+            System.out.printf("%s\t\t%s\n",persona.getId(),persona.getNombre());
         }
     }
 
     public int menu(){
         System.out.println("Seleccione una opcion: ");
-        System.out.println("1.Crear Usuario");
-        System.out.println("2.Mostrar Usuarios");
+        System.out.println("1.Crear Persona");
+        System.out.println("2.Mostrar Personas");
         int opc = sc.nextInt();
         return opc;
     }
 
-    public boolean validarUsuario(){
-        System.out.println("Ingrese los datos del usuario: ");
-        System.out.print("Username: ");
-        String username = sc.next();
-        System.out.print("Password: ");
-        String password = sc.next();
 
-        for (int i = 0; i < contU; i++){
-            if (username.equals(usuarios[i].getUsername()) && password.equals(usuarios[i].getPassword())){
-                System.out.println("Acceso");
-                break;
-            }
-        }
-    }
 
 
 }

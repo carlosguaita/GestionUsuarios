@@ -12,10 +12,10 @@ void main() {
         opc = sis.menu();
         switch (opc){
             case 1:
-                sis.crearUsuario();
+                sis.crearPersona();
                 break;
             case 2:
-                sis.mostrarUsuarios();
+                sis.mostrarPersonas();
                 break;
             default:
                 System.out.println("No existe la opcion");
